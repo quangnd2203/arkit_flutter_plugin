@@ -187,6 +187,7 @@ class ARKitFaceAnchor extends ARKitAnchor {
 class ARKitBodyAnchor extends ARKitAnchor {
   ARKitBodyAnchor(
     this.skeleton,
+    this.estimatedScaleFactor,
     this.isTracked,
     String? nodeName,
     String identifier,
@@ -201,10 +202,16 @@ class ARKitBodyAnchor extends ARKitAnchor {
   /// The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
   final ARKitSkeleton skeleton;
 
+  /// The estimated scale factor of the skeleton.
+  /// The scale factor is a value that represents the size of the skeleton in relation to the default height.
+  final double estimatedScaleFactor;
+
   /// Tracking state of the anchor
   /// The isTracked value is used to determine the anchor transform’s validity. When the object being tracked is no longer detected in the
   /// camera image, its anchor will return NO for isTracked.
   final bool isTracked;
+
+
 
   static ARKitBodyAnchor fromJson(Map<String, dynamic> json) =>
       _$ARKitBodyAnchorFromJson(json);

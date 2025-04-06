@@ -123,6 +123,7 @@ Map<String, dynamic> _$ARKitFaceAnchorToJson(ARKitFaceAnchor instance) {
 
 ARKitBodyAnchor _$ARKitBodyAnchorFromJson(Map json) => ARKitBodyAnchor(
       ARKitSkeleton.fromJson(json['skeleton'] as Map),
+      json['estimatedScaleFactor'] as double,
       json['isTracked'] as bool,
       json['nodeName'] as String?,
       json['identifier'] as String,
@@ -142,6 +143,7 @@ Map<String, dynamic> _$ARKitBodyAnchorToJson(ARKitBodyAnchor instance) {
   val['identifier'] = instance.identifier;
   val['transform'] = const MatrixConverter().toJson(instance.transform);
   val['skeleton'] = instance.skeleton;
+  val['estimatedScaleFactor'] = instance.estimatedScaleFactor;
   val['isTracked'] = instance.isTracked;
   return val;
 }

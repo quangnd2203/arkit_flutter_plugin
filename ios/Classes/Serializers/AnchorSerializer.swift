@@ -94,5 +94,6 @@ private func serializeBodyAnchor(_ anchor: ARBodyAnchor, _ params: [String: Any]
         "localTransforms": localTransforms,
     ]
     params["skeleton"] = skeleton
+    params["estimatedScaleFactor"] = anchor.estimatedScaleFactor
     return params
 }

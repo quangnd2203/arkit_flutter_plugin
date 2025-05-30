@@ -119,8 +119,27 @@ class FlutterArkitView: NSObject, FlutterPlatformView {
     }
 
     func onDispose(_ result: FlutterResult) {
-        sceneView.session.pause()
-        channel.setMethodCallHandler(nil)
-        result(nil)
+         print("🧹 ARKit onDispose CALLED")
+         // 👉 PAUSE trước, trước cả remove anything
+         sceneView.session.pause()
+
+         // ✅ Rồi mới dọn sạch
+         sceneView.session.delegate = nil
+         sceneView.delegate = nil
+
+         sceneView.scene.rootNode.enumerateChildNodes { node, _ in
+             node.removeFromParentNode()
+         }
+
+         if let coachingView = sceneView.subviews.first(where: { $0 is ARCoachingOverlayView }) as? ARCoachingOverlayView {
+             coachingView.session?.pause()
+             coachingView.session = nil
+             coachingView.delegate = nil
+             coachingView.removeFromSuperview()
+         }
+
+         sceneView.removeFromSuperview()
+         channel.setMethodCallHandler(nil)
+         print("🧹 ARKit onDispose CALLED DONE")
     }
 }

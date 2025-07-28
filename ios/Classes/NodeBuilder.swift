@@ -52,7 +52,6 @@ func updateNode(_ node: SCNNode, fromDict dict: [String: Any], forDevice device:
                 break;
         }
     }
-   }
 }
 
 private func createGltfNode(_ dict: [String: Any], channel: FlutterMethodChannel) -> SCNNode {

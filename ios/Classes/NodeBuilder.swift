@@ -42,6 +42,17 @@ func updateNode(_ node: SCNNode, fromDict dict: [String: Any], forDevice device:
     if let isHidden = dict["isHidden"] as? Bool {
         node.isHidden = isHidden
     }
+
+    if let constants = dict["constraint"] as? String {
+        switch constants {
+            case "billboard":
+                let constraint = SCNBillboardConstraint()
+                node.constraints = [constraint]
+            default:
+                break;
+        }
+    }
+   }
 }
 
 private func createGltfNode(_ dict: [String: Any], channel: FlutterMethodChannel) -> SCNNode {

@@ -1,3 +1,4 @@
+import 'package:arkit_plugin/src/enums/arkit_node_constants.dart';
 import 'package:arkit_plugin/src/geometries/arkit_geometry.dart';
 import 'package:arkit_plugin/src/light/arkit_light.dart';
 import 'package:arkit_plugin/src/physics/arkit_physics_body.dart';
@@ -23,6 +24,7 @@ class ARKitNode {
     Vector3? eulerAngles,
     String? name,
     Matrix4? transformation,
+    this.constraint = ARKitNodeConstraint.none,
   })  : name = name ?? random_string.randomString(),
         isHidden = ValueNotifier(isHidden),
         transformNotifier = ValueNotifier(createTransformMatrix(
@@ -104,6 +106,11 @@ class ARKitNode {
   /// Defaults to false.
   final ValueNotifier<bool> isHidden;
 
+  /// Constraint applied to the node, such as making it face the camera.
+  /// For example, [ARKitNodeConstraint.billboard] will cause the node to always face the viewer.
+  /// Defaults to no constraint if not specified.
+  final ARKitNodeConstraint constraint;
+
   static const _boolValueNotifierConverter = ValueNotifierConverter();
   static const _matrixValueNotifierConverter = MatrixValueNotifierConverter();
 
@@ -116,5 +123,6 @@ class ARKitNode {
         'name': name,
         'renderingOrder': renderingOrder,
         'isHidden': _boolValueNotifierConverter.toJson(isHidden),
+        'constraint': constraint.name,
       }..removeWhere((String k, dynamic v) => v == null);
 }

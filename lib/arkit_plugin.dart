@@ -5,6 +5,7 @@ export 'package:arkit_plugin/src/arkit_reference_node.dart';
 export 'package:arkit_plugin/src/enums/arkit_skeleton_joint_name.dart';
 export 'package:arkit_plugin/src/enums/coaching_overlay_goal.dart';
 export 'package:arkit_plugin/src/enums/asset_type.dart';
+export 'package:arkit_plugin/src/enums/arkit_node_constants.dart';
 export 'package:arkit_plugin/src/widget/ar_tracking_state.dart';
 export 'package:arkit_plugin/src/geometries/arkit_anchor.dart';
 export 'package:arkit_plugin/src/geometries/arkit_box.dart';
